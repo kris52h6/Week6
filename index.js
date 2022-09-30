@@ -4,11 +4,13 @@ import { setActiveLink, adjustForMissingHash, renderTemplate, loadHtml } from ".
 import { initCars } from "./pages/getCars/getCars.js";
 import { initCar } from "./pages/getSingleCar/getSingleCar.js";
 import { initAddCar } from "./pages/addCar/addCar.js";
+import { initDeleteCar } from "./pages/deleteCar/deleteCar.js";
 
 window.addEventListener("load", async () => {
     const templateCars = await loadHtml("./pages/getCars/getCars.html");
     const templateSingleCar = await loadHtml("./pages/getSingleCar/getSingleCar.html");
     const templateAddCar = await loadHtml("./pages/addCar/addCar.html");
+    const templateDeleteCar = await loadHtml("./pages/deleteCar/deleteCar.html");
 
     const router = new Navigo("/", { hash: true });
     window.router = router;
@@ -36,6 +38,10 @@ window.addEventListener("load", async () => {
             "/add-car": () => {
                 renderTemplate(templateAddCar, "content");
                 initAddCar();
+            },
+            "/delete-car": () => {
+                renderTemplate(templateDeleteCar, "content");
+                initDeleteCar();
             },
         })
         .notFound(() => {

@@ -7,7 +7,7 @@ export function initCar() {
     });
 }
 
-async function getSingleCar(id) {
+export async function getSingleCar(id) {
     const car = await fetch(getUrl() + id).then((res) => res.json());
     showCar(car);
 }
