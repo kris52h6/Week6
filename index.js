@@ -16,6 +16,12 @@ window.addEventListener("load", async () => {
     window.router = router;
 
     router
+        .hooks({
+            before(done, match) {
+                setActiveLink("menu", match.url);
+                done();
+            },
+        })
         .on({
             //For very simple "templates", you can just insert your HTML directly like below
             "/": () =>

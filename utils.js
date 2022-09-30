@@ -98,11 +98,18 @@ export function makeOptions(method, body) {
 }
 
 export async function handleHttpErrors(res) {
+    // clears error message from ui
+    document.querySelector("#error").innerText = "";
     if (!res.ok) {
         const errorResponse = await res.json();
         const error = new Error(errorResponse.message);
         error.apiError = errorResponse;
+        displayError(errorResponse.message);
         throw error;
     }
     return res.json();
+}
+
+function displayError(errorMessage) {
+    document.querySelector("#error").innerText = errorMessage;
 }

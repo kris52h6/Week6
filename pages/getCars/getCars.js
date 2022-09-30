@@ -14,14 +14,13 @@ export async function getCars() {
 }
 
 function showCars(cars) {
-    console.log(cars);
     const tableData = cars.map(
         (car) => `
     <tr>
     <td>${car.id}</td>
     <td>${car.brand}</td>
     <td>${car.model}</td>
-    <td>${car.pricePrDay}</td>
+    <td>${car.pricePrDay + "DKK"}</td>
     </tr>
     `
     );

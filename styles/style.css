@@ -1,0 +1,19 @@
+#menu {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+#menu li {
+    padding: 5px;
+}
+
+#menu li a {
+    color: black;
+    padding: 20px;
+}
+
+ul a.active {
+    background-color: pink;
+  }
+
