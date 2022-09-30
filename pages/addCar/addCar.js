@@ -1,5 +1,6 @@
 import { getUrl } from "../../settings.js";
 import { makeOptions } from "../../utils.js";
+import { handleHttpErrors } from "../../utils.js";
 
 export function initAddCar() {
     document.querySelector("#submit").addEventListener("mouseup", () => {
@@ -16,5 +17,5 @@ async function postCar() {
     };
 
     const options = makeOptions("POST", car);
-    fetch(getUrl(), options);
+    fetch(getUrl(), options).then(handleHttpErrors);
 }

@@ -1,4 +1,5 @@
 import { getUrl } from "../../settings.js";
+import { handleHttpErrors } from "../../utils.js";
 
 export function initCar() {
     document.querySelector("#single-car-submit").addEventListener("click", () => {
@@ -8,7 +9,7 @@ export function initCar() {
 }
 
 export async function getSingleCar(id) {
-    const car = await fetch(getUrl() + id).then((res) => res.json());
+    const car = await fetch(getUrl() + id).then(handleHttpErrors);
     showCar(car);
 }
 
