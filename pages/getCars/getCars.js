@@ -1,6 +1,5 @@
-import { getUrl } from "../../settings.js";
-import { handleHttpErrors } from "../../utils.js";
-import { sanitizeStringWithTableRows } from "../../utils.js";
+import { displayError, getUrl } from "../../settings.js";
+import { sanitizeStringWithTableRows, handleHttpErrors } from "../../utils.js";
 
 export function initCars() {
     getCars();
@@ -10,7 +9,9 @@ export async function getCars() {
     try {
         const cars = await fetch(getUrl()).then(handleHttpErrors);
         showCars(cars);
-    } catch (err) {}
+    } catch (err) {
+        displayError(err.message);
+    }
 }
 
 function showCars(cars) {

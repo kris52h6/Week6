@@ -1,4 +1,4 @@
-import { getUrl } from "../../settings.js";
+import { displayError, getUrl } from "../../settings.js";
 import { handleHttpErrors } from "../../utils.js";
 
 export function initCar() {
@@ -10,8 +10,12 @@ export function initCar() {
 
 export async function getSingleCar(id) {
     clearInfo();
-    const car = await fetch(getUrl() + id).then(handleHttpErrors);
-    showCar(car);
+    try {
+        const car = await fetch(getUrl() + id).then(handleHttpErrors);
+        showCar(car);
+    } catch (err) {
+        displayError(err.message);
+    }
 }
 
 function clearInfo() {

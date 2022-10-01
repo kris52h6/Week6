@@ -104,12 +104,7 @@ export async function handleHttpErrors(res) {
         const errorResponse = await res.json();
         const error = new Error(errorResponse.message);
         error.apiError = errorResponse;
-        displayError(errorResponse.message);
         throw error;
     }
     return res.json();
-}
-
-function displayError(errorMessage) {
-    document.querySelector("#error").innerText = errorMessage;
 }

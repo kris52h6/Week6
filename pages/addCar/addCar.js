@@ -1,4 +1,4 @@
-import { getUrl } from "../../settings.js";
+import { displayError, getUrl } from "../../settings.js";
 import { makeOptions } from "../../utils.js";
 import { handleHttpErrors } from "../../utils.js";
 
@@ -17,5 +17,9 @@ async function postCar() {
     };
 
     const options = makeOptions("POST", car);
-    fetch(getUrl(), options).then(handleHttpErrors);
+    try {
+        fetch(getUrl(), options).then(handleHttpErrors);
+    } catch (err) {
+        displayError(err.message);
+    }
 }

@@ -1,6 +1,5 @@
-import { getUrl } from "../../settings.js";
-import { makeOptions } from "../../utils.js";
-import { handleHttpErrors } from "../../utils.js";
+import { displayError, getUrl } from "../../settings.js";
+import { handleHttpErrors, makeOptions } from "../../utils.js";
 
 export function initDeleteCar() {
     document.querySelector("#submit").addEventListener("mouseup", () => {
@@ -12,5 +11,10 @@ async function deleteCar() {
     const carIdToBeDeleted = document.querySelector("#car-id").value;
 
     const options = makeOptions("DELETE");
-    fetch(getUrl() + carIdToBeDeleted, options).then(handleHttpErrors);
+    try {
+        fetch(getUrl() + carIdToBeDeleted, options).then(handleHttpErrors);
+        console.log(fetch(getUrl() + carIdToBeDeleted, options).then(handleHttpErrors));
+    } catch (err) {
+        displayError(err.message);
+    }
 }
